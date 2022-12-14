@@ -9,6 +9,7 @@ part of 'annotate_image_response.dart';
 AnnotateImageResponse _$AnnotateImageResponseFromJson(
         Map<String, dynamic> json) =>
     AnnotateImageResponse(
+      textAnnotation: json['fullTextAnnotation']['text'],
       faceAnnotationList: (json['faceAnnotations'] as List<dynamic>?)
           ?.map((e) => FaceAnnotation.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,6 +26,7 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
 Map<String, dynamic> _$AnnotateImageResponseToJson(
         AnnotateImageResponse instance) =>
     <String, dynamic>{
+      'textAnnotation': instance.textAnnotation ?? '',
       'faceAnnotations':
           instance.faceAnnotationList?.map((e) => e.toJson()).toList(),
       'localizedObjectAnnotations': instance.localizedObjectAnnotationList

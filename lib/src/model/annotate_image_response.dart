@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'face_annotation.dart';
+import 'text_detection_params.dart';
 import 'localized_object_annotation.dart';
 import 'label_annotation.dart';
 
@@ -14,6 +15,9 @@ class AnnotateImageResponse {
   @JsonKey(name: 'faceAnnotations')
   final List<FaceAnnotation>? faceAnnotationList;
 
+  @JsonKey(name: 'textAnnotation')
+  final String? textAnnotation;
+
   @JsonKey(name: 'localizedObjectAnnotations')
   final List<LocalizedObjectAnnotation>? localizedObjectAnnotationList;
 
@@ -23,6 +27,10 @@ class AnnotateImageResponse {
   ///If present, face detection has completed successfully.
   List<FaceAnnotation> get faceAnnotations =>
       faceAnnotationList ?? <FaceAnnotation>[];
+
+  ///If present, text detection has completed successfully.
+  String get textAnnotations =>
+      textAnnotation ?? '';
 
   ///If present, landmark detection has completed successfully.
   List<LocalizedObjectAnnotation> get localizedObjectAnnotations =>
@@ -34,6 +42,7 @@ class AnnotateImageResponse {
 
   AnnotateImageResponse(
       {this.faceAnnotationList,
+        this.textAnnotation,
       this.localizedObjectAnnotationList,
       this.labelAnnotationList});
 
